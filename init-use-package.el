@@ -32,10 +32,11 @@
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 (package-initialize)
 
-;; Install 'use-package' if necessary
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+;; Install the important bits if necessary
+(dolist (p '(use-package diminish bind-key))
+  (unless (package-installed-p p)
+    (package-refresh-contents)
+    (package-install p)))
 
 ;; Enable use-package
 (eval-when-compile
